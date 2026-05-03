@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
@@ -6,13 +7,14 @@ public class PlayerManager : MonoBehaviour
 {
     public Font font;
     public Tilemap tileMapFarmLand;
-    public Tile[] Flower;
+
     public Tile FarmLand;
     private int seeds = 0;
-    private int flowers = 5;
+    private int flowers = 0;
 
     public float GrowTime = 6.0f;
     public GameObject FlowerPref;
+
 
 
     private void Update()
@@ -31,11 +33,26 @@ public class PlayerManager : MonoBehaviour
                 Instantiate(FlowerPref, tposi, Quaternion.identity);
                 flowers--;
             }
+
         }
     }
 
 
 
+    public void addFlower(int i)
+    {
+        flowers += i;
+    }
+
+    public void addSeed(int i)
+    {
+        seeds += i;
+    }
+
+    public int getSeeds()
+    {
+        return seeds;
+    }
     void OnGUI()
     {
         GUIStyle style = new GUIStyle(GUI.skin.label);
@@ -44,6 +61,7 @@ public class PlayerManager : MonoBehaviour
         GUILayout.BeginVertical();
         GUILayout.Label("Seeds: " + seeds, style);
         GUILayout.Label("Flowers: " + flowers, style);
+        GUILayout.Label("wasd to move, hold shift to sprint", style);
         GUILayout.EndVertical();
     }
 }
