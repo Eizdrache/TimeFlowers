@@ -9,6 +9,7 @@ public class BirdContoller : MonoBehaviour, IPointerClickHandler
     private GameObject player;
     private PlayerManager playerManager;
 
+    private int wuff;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
